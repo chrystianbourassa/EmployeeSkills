@@ -1,0 +1,44 @@
+version: '3.4'
+
+
+
+
+
+services:
+
+  employeeskill:
+    image: ${DOCKER_REGISTRY-}employeeskill
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://localhost;http://localhost
+      - ASPNETCORE_HTTPS_PORT=44349  
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "51218:80"
+      - "44349:443"
+
+
+  db:
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=2Secure*Password2
+    ports:
+      - "1433:1433"
+    expose:  
+    - 1433
+    volumes:
+      - skill:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+volumes:
+  skill:
+
