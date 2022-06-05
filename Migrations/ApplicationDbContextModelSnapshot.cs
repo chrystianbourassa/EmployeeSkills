@@ -203,12 +203,19 @@ namespace EmployeeSkill.Migrations
             modelBuilder.Entity("EmployeeSkill.Models.SubCategory", b =>
                 {
                     b.Property<int>("SubCategoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryID")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SubCategoryID");
+
+                    b.HasIndex("CategoryID");
 
                     b.ToTable("SubCategories");
                 });
@@ -416,7 +423,7 @@ namespace EmployeeSkill.Migrations
             modelBuilder.Entity("EmployeeSkill.Models.Employee", b =>
                 {
                     b.HasOne("EmployeeSkill.Models.City", "City")
-                        .WithMany()
+                        .WithMany("Employees")
                         .HasForeignKey("CityID");
 
                     b.Navigation("City");
@@ -471,8 +478,8 @@ namespace EmployeeSkill.Migrations
             modelBuilder.Entity("EmployeeSkill.Models.SubCategory", b =>
                 {
                     b.HasOne("EmployeeSkill.Models.Category", "Category")
-                        .WithMany("SubCategories")
-                        .HasForeignKey("SubCategoryID")
+                        .WithMany()
+                        .HasForeignKey("CategoryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -530,9 +537,9 @@ namespace EmployeeSkill.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EmployeeSkill.Models.Category", b =>
+            modelBuilder.Entity("EmployeeSkill.Models.City", b =>
                 {
-                    b.Navigation("SubCategories");
+                    b.Navigation("Employees");
                 });
 
             modelBuilder.Entity("EmployeeSkill.Models.Employee", b =>

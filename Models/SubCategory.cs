@@ -19,6 +19,8 @@ namespace EmployeeSkill.Models
         //------------------------------------------------
         // Maybe sub categories can have one category
         //------------------------------------------------
+
+        public int CategoryID { get; set; }
         public Category Category { get; set; }
 
 

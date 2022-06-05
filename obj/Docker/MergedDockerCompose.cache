@@ -1,4 +1,4 @@
-name: dockercompose4549553907271369083
+name: dockercompose12668354975873729146
 services:
   adminer:
     image: adminer
@@ -31,7 +31,7 @@ services:
       volume: {}
   employeeskill:
     build:
-      context: C:\git\EmployeeSkill
+      context: C:\git\EmployeeSkills
       dockerfile: Dockerfile
     depends_on:
       db:
@@ -73,7 +73,7 @@ services:
         create_host_path: true
 networks:
   default:
-    name: dockercompose4549553907271369083_default
+    name: dockercompose12668354975873729146_default
 volumes:
   skill:
-    name: dockercompose4549553907271369083_skill
+    name: dockercompose12668354975873729146_skill

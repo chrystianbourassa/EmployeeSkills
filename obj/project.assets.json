@@ -7797,11 +7797,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\git\\EmployeeSkill\\EmployeeSkill.csproj",
+      "projectUniqueName": "C:\\git\\EmployeeSkills\\EmployeeSkill.csproj",
       "projectName": "EmployeeSkill",
-      "projectPath": "C:\\git\\EmployeeSkill\\EmployeeSkill.csproj",
+      "projectPath": "C:\\git\\EmployeeSkills\\EmployeeSkill.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\git\\EmployeeSkill\\obj\\",
+      "outputPath": "C:\\git\\EmployeeSkills\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

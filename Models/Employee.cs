@@ -33,14 +33,15 @@ namespace EmployeeSkill.Models
         [Display(Name = "Note")]
         public string Notes { get; set; }
 
-        [Display(Name = "Photo de profil")]
-        public string ProfilePictureURL { get; set; }
-
         [Display(Name = "Résumé")]
         public string ResumePath { get; set; }
         //------------------------------------------------
         // Maybe sub categories can have one category
         //------------------------------------------------
+
+        public int CityID { get; set; }
+
+        [Display(Name = "Ville")]
         public City City { get; set; }
         // to Employee_Skills
         public List<Employee_Skill> Employees_Skills { get; set; }
