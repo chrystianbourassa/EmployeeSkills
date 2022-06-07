@@ -21,6 +21,26 @@ namespace EmployeeSkill.Controllers
 
 
 
+        //Get: subcategory/Details/1       
+        public async Task<IActionResult> Details(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var subcategory = await _context.SubCategories.Include(c => c.Category)
+                .FirstOrDefaultAsync(m => m.SubCategoryID == id);
+            if (subcategory == null)
+            {
+                return NotFound();
+            }
+
+            return View(subcategory);
+        }
+
+
         public IActionResult CreateNew()
         {
 
@@ -28,6 +48,8 @@ namespace EmployeeSkill.Controllers
 
             return View();
         }
+
+
 
         [HttpPost]
         public async Task<IActionResult> Create([Bind("Description,CategoryID")] SubCategory subCategory)
@@ -46,6 +68,85 @@ namespace EmployeeSkill.Controllers
             return RedirectToAction(nameof(Index));
 
         }
+
+
+
+        // GET: subcategory/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Categories = new SelectList(_context.Categories, "CategoryID", "Description");
+
+
+            var subcategory = await _context.SubCategories.FindAsync(id);
+            if (subcategory == null)
+            {
+                return NotFound();
+            }
+            return View(subcategory);
+        }
+
+
+
+        // GET: employee/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var subcategories = await _context.SubCategories 
+                .FirstOrDefaultAsync(m => m.SubCategoryID  == id);
+            if (subcategories == null)
+            {
+                return NotFound();
+            }
+
+            return View(subcategories);
+        }
+
+
+        // POST: employee/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var subcategories = await _context.SubCategories.FindAsync(id);
+            _context.SubCategories.Remove(subcategories);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("SubCategoryID,Description,CategoryID")] SubCategory subCategory)
+        {
+            if (id != subCategory.SubCategoryID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                _context.Update(subCategory);
+                await _context.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
+            }
+            return View(subCategory);
+        }
+
+
 
 
 

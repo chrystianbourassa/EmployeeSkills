@@ -2,6 +2,10 @@
 
 @{ ViewData["Title"] = "Modifier une catégorie"; }
 
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
@@ -19,8 +23,8 @@
 
                     <div class="form-group">
                         <label asp-for="Category" class="control-label"></label>
-                        <select asp-for="Category" class="form-control" asp-items="ViewBag.Categories"></select>
-                        <span asp-validation-for="Category" class="text-danger"></span>
+                        <select asp-for="CategoryID" class="form-control" asp-items="ViewBag.Categories"></select>
+                        <span asp-validation-for="CategoryID" class="text-danger"></span>
                     </div>
 
 

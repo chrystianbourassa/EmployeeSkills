@@ -1,11 +1,14 @@
 ﻿@model Employee
 
-@{ ViewData["Title"] = "Modifier une catégorie"; }
+@{ ViewData["Title"] = "Modifier un employé"; }
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h1>Modifier une catégorie</h1>
+            <h1>Modifier un employé</h1>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
@@ -74,9 +77,10 @@
                     <div class="form-group">
                         <form asp-action="Edit">
                             <input type="hidden" asp-for="EmployeeID" />
-                            <input type="submit" value="Confirm" class="btn btn-danger float-right" />
+                            <input type="submit" value="Confirmer" class="btn btn-danger float-right" />
                         </form>
                         <a class="btn btn-outline-secondary" asp-action="Index">Annuler</a>
+
                     </div>
 
 

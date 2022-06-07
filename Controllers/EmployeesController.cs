@@ -81,10 +81,14 @@ namespace EmployeeSkill.Controllers
         // GET: employee/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+
+
             if (id == null)
             {
                 return NotFound();
             }
+            ViewBag.Cities = new SelectList(_context.Cities, "CityID", "Name");
+
 
             var employee = await _context.Employees.FindAsync(id);
             if (employee == null)
@@ -98,7 +102,7 @@ namespace EmployeeSkill.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("FullName,BirthDate,HireDate,Address,PostalCode, Country,HomePhone,Notes,ResumePath,CityID")] Employee employee )
+        public async Task<IActionResult> Edit(int id, [Bind("EmployeeID,FullName,BirthDate,HireDate,Address,PostalCode, Country,HomePhone,Notes,ResumePath,CityID")] Employee employee )
         {
             if (id != employee.EmployeeID )
             {
