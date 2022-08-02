@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeSkill.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220601225145_test")]
-    partial class test
+    [Migration("20220802163034_newdb")]
+    partial class newdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -85,7 +85,7 @@ namespace EmployeeSkill.Migrations
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("CityID")
+                    b.Property<int>("CityID")
                         .HasColumnType("int");
 
                     b.Property<string>("Country")
@@ -106,9 +106,6 @@ namespace EmployeeSkill.Migrations
                     b.Property<string>("PostalCode")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProfilePictureURL")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ResumePath")
                         .HasColumnType("nvarchar(max)");
 
@@ -121,26 +118,22 @@ namespace EmployeeSkill.Migrations
 
             modelBuilder.Entity("EmployeeSkill.Models.Employee_Skill", b =>
                 {
-                    b.Property<int>("Employee_SkillID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<int>("EmployeeID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("InterestID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("LevelID")
                         .HasColumnType("int");
 
                     b.Property<int>("SkillID")
                         .HasColumnType("int");
 
-                    b.HasKey("Employee_SkillID");
+                    b.Property<int>("Employee_SkillID")
+                        .HasColumnType("int");
 
-                    b.HasIndex("EmployeeID");
+                    b.Property<int?>("InterestID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LevelID")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmployeeID", "SkillID");
 
                     b.HasIndex("InterestID");
 
@@ -213,7 +206,7 @@ namespace EmployeeSkill.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryID")
+                    b.Property<int>("CategoryID")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -430,7 +423,9 @@ namespace EmployeeSkill.Migrations
                 {
                     b.HasOne("EmployeeSkill.Models.City", "City")
                         .WithMany()
-                        .HasForeignKey("CityID");
+                        .HasForeignKey("CityID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("City");
                 });
@@ -448,8 +443,10 @@ namespace EmployeeSkill.Migrations
                         .HasForeignKey("InterestID");
 
                     b.HasOne("EmployeeSkill.Models.Level", "Level")
-                        .WithMany()
-                        .HasForeignKey("LevelID");
+                        .WithMany("Employees_Skills")
+                        .HasForeignKey("LevelID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("EmployeeSkill.Models.Skill", "Skill")
                         .WithMany("Employees_Skills")
@@ -485,7 +482,9 @@ namespace EmployeeSkill.Migrations
                 {
                     b.HasOne("EmployeeSkill.Models.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryID");
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Category");
                 });
@@ -542,6 +541,11 @@ namespace EmployeeSkill.Migrations
                 });
 
             modelBuilder.Entity("EmployeeSkill.Models.Employee", b =>
+                {
+                    b.Navigation("Employees_Skills");
+                });
+
+            modelBuilder.Entity("EmployeeSkill.Models.Level", b =>
                 {
                     b.Navigation("Employees_Skills");
                 });

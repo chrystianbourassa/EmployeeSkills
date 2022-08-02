@@ -16,7 +16,6 @@ namespace EmployeeSkill.Models
         [Display(Name = "Ville")]
         public string Name { get; set; }
 
-        //public List<Employee> Employees { get; set; }
 
 
     }

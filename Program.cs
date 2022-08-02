@@ -31,6 +31,9 @@ namespace EmployeeSkill
                 if (dbContext.Database.IsSqlServer())
                 {
                     //dbContext.Database.Migrate();
+
+
+
                 }
             }
             catch (Exception ex)

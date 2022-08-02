@@ -14,17 +14,16 @@ namespace EmployeeSkill.Models
         public int EmployeeID { get; set; }
         public Employee Employee { get; set; }
 
-
         public int SkillID { get; set; }
         public Skill Skill { get; set; }
 
-
-        //------------------------------------------------
-        // Many employees Skills can point to the same Level
-        // and interest.
-        //------------------------------------------------
+        public int LevelID { get; set; }
         public Level Level { get; set; }
-        public Interest Interest { get; set; }
+
+        public int InterestID { get; set; }
+        public Interest Interest{ get; set; }
+
+
 
 
 

@@ -1,6 +1,8 @@
-﻿@model SubCategory
+﻿@model Interest
 
-@{ ViewData["Title"] = "Modifier une catégorie"; }
+@{
+    ViewData["Title"] = "Ajouter un intérêt de compétence";
+}
 
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="~/css/site.css" />
@@ -9,11 +11,11 @@
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h1>Modifier une catégorie</h1>
+            <h1>Ajouter un intérêt de compétence</h1>
         </p>
         <div class="row">
             <div class="col-md-8 offset-2">
-                <form asp-action="Edit">
+                <form asp-action="Create">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="Description" class="control-label"></label>
@@ -22,21 +24,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="Category" class="control-label"></label>
-                        <select asp-for="CategoryID" class="form-control" asp-items="ViewBag.Categories"></select>
-                        <span asp-validation-for="CategoryID" class="text-danger"></span>
-                    </div>
-
-
-                    <div class="form-group">
-                        <form asp-action="Edit">
-                            <input type="hidden" asp-for="SubCategoryID" />
-                            <input type="submit" value="Confirmer" class="btn btn-danger float-right" />
-                        </form>
+                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
                         <a class="btn btn-outline-secondary" asp-action="Index">Annuler</a>
                     </div>
-
-
                 </form>
             </div>
         </div>

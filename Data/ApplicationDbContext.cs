@@ -20,7 +20,7 @@ namespace EmployeeSkill.Data
             base.OnModelCreating(modelBuilder);
 
 
-            modelBuilder.Entity<Employee_Skill>().HasKey(sc => new { sc.EmployeeID, sc.SkillID });
+            modelBuilder.Entity<Employee_Skill>().HasKey(sc => new { sc.EmployeeID, sc.SkillID, sc.InterestID });
 
             modelBuilder.Entity<Employee_Skill>()
                 .HasOne<Employee>(sc => sc.Employee)
@@ -32,6 +32,16 @@ namespace EmployeeSkill.Data
                 .HasOne<Skill>(sc => sc.Skill)
                 .WithMany(s => s.Employees_Skills)
                 .HasForeignKey(sc => sc.SkillID);
+
+            modelBuilder.Entity<Employee_Skill>()
+                .HasOne<Level>(sc => sc.Level)
+                .WithMany(s => s.Employees_Skills)
+                .HasForeignKey(sc => sc.LevelID);
+
+            modelBuilder.Entity<Employee_Skill>()
+                .HasOne<Interest>(sc => sc.Interest)
+                .WithMany(s => s.Employees_Skills)
+                .HasForeignKey(sc => sc.InterestID);
 
 
             //modelBuilder.Entity<SubCategory>()

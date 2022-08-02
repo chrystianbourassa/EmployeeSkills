@@ -43,6 +43,8 @@ namespace EmployeeSkill.Models
 
         [Display(Name = "Ville")]
         public City City { get; set; }
+
+
         // to Employee_Skills
         public List<Employee_Skill> Employees_Skills { get; set; }
 

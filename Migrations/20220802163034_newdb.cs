@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EmployeeSkill.Migrations
 {
-    public partial class test : Migration
+    public partial class newdb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -226,7 +226,7 @@ namespace EmployeeSkill.Migrations
                     SubCategoryID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CategoryID = table.Column<int>(type: "int", nullable: true)
+                    CategoryID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -236,7 +236,7 @@ namespace EmployeeSkill.Migrations
                         column: x => x.CategoryID,
                         principalTable: "Categories",
                         principalColumn: "CategoryID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -253,9 +253,8 @@ namespace EmployeeSkill.Migrations
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HomePhone = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProfilePictureURL = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ResumePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CityID = table.Column<int>(type: "int", nullable: true)
+                    CityID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -265,7 +264,7 @@ namespace EmployeeSkill.Migrations
                         column: x => x.CityID,
                         principalTable: "Cities",
                         principalColumn: "CityID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -299,16 +298,15 @@ namespace EmployeeSkill.Migrations
                 name: "Employees_Skills",
                 columns: table => new
                 {
-                    Employee_SkillID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeID = table.Column<int>(type: "int", nullable: false),
                     SkillID = table.Column<int>(type: "int", nullable: false),
-                    LevelID = table.Column<int>(type: "int", nullable: true),
+                    Employee_SkillID = table.Column<int>(type: "int", nullable: false),
+                    LevelID = table.Column<int>(type: "int", nullable: false),
                     InterestID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees_Skills", x => x.Employee_SkillID);
+                    table.PrimaryKey("PK_Employees_Skills", x => new { x.EmployeeID, x.SkillID });
                     table.ForeignKey(
                         name: "FK_Employees_Skills_Employees_EmployeeID",
                         column: x => x.EmployeeID,
@@ -326,7 +324,7 @@ namespace EmployeeSkill.Migrations
                         column: x => x.LevelID,
                         principalTable: "Levels",
                         principalColumn: "LevelID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Employees_Skills_Skills_SkillID",
                         column: x => x.SkillID,
@@ -378,11 +376,6 @@ namespace EmployeeSkill.Migrations
                 name: "IX_Employees_CityID",
                 table: "Employees",
                 column: "CityID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Employees_Skills_EmployeeID",
-                table: "Employees_Skills",
-                column: "EmployeeID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_Skills_InterestID",

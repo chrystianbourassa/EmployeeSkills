@@ -15,5 +15,10 @@ namespace EmployeeSkill.Models
 
         [Display(Name = "Niveau d'intéret")]
         public string Description { get; set; }
+
+
+        // to Employee_Skills
+        public List<Employee_Skill> Employees_Skills { get; set; }
+
     }
 }
