@@ -71,25 +71,6 @@ namespace EmployeeSkill.Controllers
 
 
 
-        // GET: subcategory/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-
-
-            if (id == null)
-            {
-                return NotFound();
-            }
-            ViewBag.Categories = new SelectList(_context.Categories, "CategoryID", "Description");
-
-
-            var subcategory = await _context.SubCategories.FindAsync(id);
-            if (subcategory == null)
-            {
-                return NotFound();
-            }
-            return View(subcategory);
-        }
 
 
 
@@ -125,7 +106,24 @@ namespace EmployeeSkill.Controllers
 
 
 
+        public async Task<IActionResult> Edit(int? id)
+        {
 
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Categories = new SelectList(_context.Categories, "CategoryID", "Description");
+
+
+            var subcategory = await _context.SubCategories.FindAsync(id);
+            if (subcategory == null)
+            {
+                return NotFound();
+            }
+            return View(subcategory);
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]

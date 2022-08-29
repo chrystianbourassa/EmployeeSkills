@@ -21,11 +21,13 @@ namespace EmployeeSkill.Models
         // 1 to 1 relationship
         //------------------------------------------------
 
-        // to Category table
- 
-        public Category Category { get; set; }
-
+        public int SubCategoryID { get; set; }
         public SubCategory SubCategory { get; set; }
+
+
+        // to Category table
+        public int CategoryID { get; set; }
+        public Category Category { get; set; }
 
 
         //------------------------------------------------

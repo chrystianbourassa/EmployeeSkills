@@ -44,11 +44,18 @@ namespace EmployeeSkill.Data
                 .HasForeignKey(sc => sc.InterestID);
 
 
-            //modelBuilder.Entity<SubCategory>()
-            //.HasOne<Category>(s => s.Category)
-            //.WithMany(g => g.SubCategories)
-            //.HasForeignKey(s => s.SubCategoryID);
+            //modelBuilder.Entity<Skill>().HasKey(sc => new { sc.CategoryID, sc.SubCategoryID });
 
+            //modelBuilder.Entity<Skill>()
+            //     .HasOne<Category>(sc => sc.Category)
+            //     .WithMany(s => s.Skills)
+            //     .HasForeignKey(sc => sc.CategoryID);
+
+
+            //modelBuilder.Entity<Skill>()
+            //     .HasOne<SubCategory>(sc => sc.SubCategory)
+            //     .WithMany(s => s.Skills)
+            //     .HasForeignKey(sc => sc.SubCategoryID);
 
 
         }

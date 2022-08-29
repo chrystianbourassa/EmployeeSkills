@@ -16,5 +16,11 @@ namespace EmployeeSkill.Models
         [Display(Name = "Nom de catégorie")]
         public string Description { get; set; }
 
+
+
+        // to Skills
+        public List<Skill> Skills { get; set; }
+
+
     }
 }

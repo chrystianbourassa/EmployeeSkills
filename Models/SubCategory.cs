@@ -24,5 +24,9 @@ namespace EmployeeSkill.Models
         public Category Category { get; set; }
 
 
+        // to Skills
+        public List<Skill> Skills { get; set; }
+
+
     }
 }
