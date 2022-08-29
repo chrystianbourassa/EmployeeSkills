@@ -215,4 +215,8 @@ C:\git\EmployeeSkills\obj\Debug\net5.0\EmployeeSkill.genruntimeconfig.cache
 C:\git\EmployeeSkills\obj\Debug\net5.0\Razor\Views\Interests\Delete.cshtml.g.cs
 C:\git\EmployeeSkills\obj\Debug\net5.0\Razor\Views\Interests\Details.cshtml.g.cs
 C:\git\EmployeeSkills\obj\Debug\net5.0\Razor\Views\Interests\Edit.cshtml.g.cs
+C:\git\EmployeeSkills\obj\Debug\net5.0\Razor\Views\Skills\CreateNew.cshtml.g.cs
+C:\git\EmployeeSkills\obj\Debug\net5.0\Razor\Views\Skills\Delete.cshtml.g.cs
+C:\git\EmployeeSkills\obj\Debug\net5.0\Razor\Views\Skills\Details.cshtml.g.cs
+C:\git\EmployeeSkills\obj\Debug\net5.0\Razor\Views\Skills\Edit.cshtml.g.cs
 C:\git\EmployeeSkills\obj\Debug\net5.0\EmployeeSkill.csproj.AssemblyReference.cache
